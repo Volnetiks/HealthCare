@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/utils/hex_color.dart';
-import 'package:health_care/widgets/circular_data.dart';
+import 'package:health_care/widgets/data/circular_data.dart';
 import 'package:health_care/widgets/rounded_icon.dart';
 
-class DataItem extends StatelessWidget {
-  const DataItem({super.key});
+class MuscleDataItem extends StatelessWidget {
+  const MuscleDataItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class DataItem extends StatelessWidget {
                 child: Row(
                   children: [
                     RoundedIcon(
-                      color: HexColor.fromHex("#faefff"),
+                      color: HexColor.fromHex("#fcf7f1"),
                       icon: Icons.lock_rounded,
                       iconColor: Colors.orange,
                       size: 60,

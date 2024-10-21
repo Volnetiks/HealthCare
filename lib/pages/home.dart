@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/widgets/break_circle.dart';
 import 'package:health_care/widgets/circular_progress.dart';
-import 'package:health_care/widgets/data_item.dart';
+import 'package:health_care/widgets/data/muscle_data_item.dart';
+import 'package:health_care/widgets/data/stamina_data_item.dart';
 import 'package:health_care/widgets/stats_item.dart';
 
 class HomePage extends StatelessWidget {
@@ -86,17 +87,14 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 40),
                 const Text("All Health Data",
                     style: TextStyle(fontSize: 30, color: Colors.black)),
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: 3,
-                      itemBuilder: (BuildContext context, int index) {
-                        return const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 15),
-                          child: DataItem(),
-                        );
-                      }),
-                )
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
+                  child: MuscleDataItem(),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
+                  child: StaminaDataItem(),
+                ),
               ],
             ),
           ),
