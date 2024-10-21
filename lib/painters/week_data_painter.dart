@@ -25,12 +25,12 @@ class WeekDataPainter extends CustomPainter {
 
       paintBackground.strokeWidth = 2;
       paintBackground.shader = gradient.createShader(Rect.fromPoints(
-          Offset(size.width / 2 + (progress == 0 ? 0.5 : progress * 0.5),
+          Offset(size.width / 2 + (progress == 0 ? 0.3 : progress * 0.3),
               size.height / 2),
-          Offset(size.width, size.height / 2)));
+          Offset(size.width + 15, size.height / 2)));
 
       canvas.drawLine(
-          Offset(size.width / 2 + (progress == 0 ? 0.5 : progress * 0.5),
+          Offset(size.width / 2 + (progress == 0 ? 0.3 : progress * 0.3),
               size.height / 2),
           Offset(size.width + 15, size.height / 2),
           paintBackground);
@@ -40,7 +40,7 @@ class WeekDataPainter extends CustomPainter {
     paintBackground.shader = null;
 
     canvas.drawCircle(Offset(size.width / 2, size.height / 2),
-        progress == 0 ? 0.5 : progress * 0.5, paintBackground);
+        progress == 0 ? 0.3 : progress * 0.3, paintBackground);
   }
 
   @override

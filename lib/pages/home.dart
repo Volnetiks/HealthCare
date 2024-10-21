@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                 const FractionallySizedBox(
                     widthFactor: 0.8,
                     child: Text(
-                      "Monitor your progess towards a longer life.",
+                      "Monitor your progess towards a healthy life.",
                       style: TextStyle(
                         fontSize: 25,
                       ),

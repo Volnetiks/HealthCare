@@ -49,7 +49,8 @@ class DataItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text("Last week >"),
+                  const Text("Last week >",
+                      style: TextStyle(color: Colors.grey)),
                   const SizedBox(height: 5),
                   SizedBox(
                     height: 30,
