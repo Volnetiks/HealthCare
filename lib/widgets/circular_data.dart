@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/painters/circular_progress_painter.dart';
+import 'package:health_care/painters/week_data_painter.dart';
 
 class CircularData extends StatelessWidget {
-  const CircularData({super.key, this.progress, required this.start, required this.size});
+  const CircularData(
+      {super.key, this.progress = 1, required this.size, this.nextProgress});
 
-  final double? progress;
-  final double start;
+  final double progress;
   final double size;
+  final double? nextProgress;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,8 @@ class CircularData extends StatelessWidget {
       width: size,
       height: size,
       child: CustomPaint(
-        painter: CircularProgressPainter(progress: progress, start: start),
-        child: progress == null ? Icon(Icons.question_mark_rounded, color: Colors.grey.shade400, size: size * 2 / 3,) : null
-      ),
+          painter:
+              WeekDataPainter(progress: progress, nextProgress: nextProgress)),
     );
   }
 }

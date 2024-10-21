@@ -9,64 +9,77 @@ class DataItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    final List<double> progress = [1, 9, 0, 3, 6, 2, 9];
 
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: Colors.white,
-        border: Border.all(color: HexColor.fromHex("#faf6ed"), width: 1.5)
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Row(
-                children: [
-                  RoundedIcon(color: HexColor.fromHex("#faefff"), icon: Icons.lock_rounded, iconColor: Colors.orange, size: 60, iconSize: 30,),
-                  const SizedBox(width: 10),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Gaining muscle", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
-                      Text("Muscle: 87.9%", style: TextStyle(color: Colors.grey, fontSize: 14))
-                    ],
-                  ),
-                ],
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.white,
+            border: Border.all(color: HexColor.fromHex("#faf6ed"), width: 1.5)),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  children: [
+                    RoundedIcon(
+                      color: HexColor.fromHex("#faefff"),
+                      icon: Icons.lock_rounded,
+                      iconColor: Colors.orange,
+                      size: 60,
+                      iconSize: 30,
+                    ),
+                    const SizedBox(width: 10),
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Gaining muscle",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 17)),
+                        Text("Muscle: 87.9%",
+                            style: TextStyle(color: Colors.grey, fontSize: 13))
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const Text("Last week >"),
-                const SizedBox(height: 5),
-                SizedBox(
-                  height: 30,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 7,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Column(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Text("Last week >"),
+                  const SizedBox(height: 5),
+                  SizedBox(
+                    height: 30,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 7,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Column(
                               children: [
-                                const CircularData(start: 0, size: 10),
+                                CircularData(
+                                  progress: progress[index],
+                                  size: 10,
+                                  nextProgress:
+                                      index == 6 ? null : progress[index + 1],
+                                ),
                                 const SizedBox(height: 5),
-                                Text(weekdays[index], style: const TextStyle(fontSize: 8))
+                                Text(weekdays[index],
+                                    style: const TextStyle(fontSize: 8))
                               ],
                             ),
-                        );
-                      }
-                    ),
-                )
-              ],
-            )
-          ],
-        ),
-      )
-    );
+                          );
+                        }),
+                  )
+                ],
+              )
+            ],
+          ),
+        ));
   }
 }

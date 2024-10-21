@@ -1,41 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/utils/hex_color.dart';
 
-class CircularProgressPainter extends CustomPainter {
+class WeekDataPainter extends CustomPainter {
+  final double progress;
+  final double? nextProgress;
 
-  final double? progress;
-  final double start;
-
-  CircularProgressPainter({
-    required this.progress,
-    required this.start
-  });
+  WeekDataPainter({this.progress = 0, this.nextProgress});
 
   @override
   void paint(Canvas canvas, Size size) {
     final lightOrange = HexColor.fromHex("#fbc28e");
     final darkOrange = HexColor.fromHex("#fda03a");
-    final color = Color.lerp(lightOrange, darkOrange, progress ?? 0)!;
+    final color = Color.lerp(lightOrange, darkOrange, progress / 7)!;
 
     final paintBackground = Paint()
-    ..strokeWidth = 5
-    ..color = color
-    ..style = PaintingStyle.stroke;
+      ..color = color
+      ..style = PaintingStyle.stroke;
 
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.width / 2, paintBackground);
+    if (nextProgress != null) {
+      final gradient = LinearGradient(colors: [
+        color,
+        Color.lerp(lightOrange, darkOrange, nextProgress! / 7)!
+      ]);
 
-    if (progress != null) {
-      final paintProgress = Paint()
-        ..strokeWidth = 5
-        ..color = color
-        ..strokeCap = StrokeCap.round
-        ..style = PaintingStyle.stroke;
+      paintBackground.strokeWidth = 2;
+      paintBackground.shader = gradient.createShader(Rect.fromPoints(
+          Offset(size.width / 2 + (progress == 0 ? 0.5 : progress * 0.5),
+              size.height / 2),
+          Offset(size.width, size.height / 2)));
 
-      canvas.drawArc(Rect.fromCenter(center: Offset(size.width / 2, size.height / 2), width: size.width, height: size.height), 0, convertPercentageToRadian(progress!), false, paintProgress);
-    } else {
-      paintBackground.style = PaintingStyle.fill;
-      canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.width / 2, paintBackground);
+      canvas.drawLine(
+          Offset(size.width / 2 + (progress == 0 ? 0.5 : progress * 0.5),
+              size.height / 2),
+          Offset(size.width + 15, size.height / 2),
+          paintBackground);
     }
+
+    paintBackground.strokeWidth = (progress * 0.8) + 2;
+    paintBackground.shader = null;
+
+    canvas.drawCircle(Offset(size.width / 2, size.height / 2),
+        progress == 0 ? 0.5 : progress * 0.5, paintBackground);
   }
 
   @override

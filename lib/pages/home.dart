@@ -21,61 +21,81 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Today", style: TextStyle(color: Colors.grey.shade600, fontSize: 20)),
+                Text("Today",
+                    style:
+                        TextStyle(color: Colors.grey.shade600, fontSize: 20)),
                 const FractionallySizedBox(
-                  widthFactor: 0.8,
-                  child: Text("Monitor your progess towards a longer life.", style: TextStyle(fontSize: 25, ), textAlign: TextAlign.center,)
+                    widthFactor: 0.8,
+                    child: Text(
+                      "Monitor your progess towards a longer life.",
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
+                      textAlign: TextAlign.center,
+                    )),
+                const SizedBox(
+                  height: 20,
                 ),
-                const SizedBox(height: 20,),
                 SizedBox(
                   height: 70,
                   child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 7,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                        child: Column(
-                          children: [
-                            SizedBox(height: 30, child: CircularProgress(progress: index == 2 ? null : 0.1 * index, start: 0)),
-                            const SizedBox(height: 5),
-                            Text(weekdays[index], style: const TextStyle(fontSize: 12))
-                          ],
-                        )
-                      );
-                    }
-                  ),
+                      shrinkWrap: true,
+                      itemCount: 7,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 14.0),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                    height: 30,
+                                    child: CircularProgress(
+                                        progress:
+                                            index == 2 ? null : 0.1 * index,
+                                        start: 0)),
+                                const SizedBox(height: 5),
+                                Text(weekdays[index],
+                                    style: const TextStyle(fontSize: 12))
+                              ],
+                            ));
+                      }),
                 ),
                 const BreakCircle(),
                 const SizedBox(height: 20),
-                const Text("Following", style: TextStyle(fontSize: 30, color: Colors.black)),
+                const Text("Following",
+                    style: TextStyle(fontSize: 30, color: Colors.black)),
                 const SizedBox(height: 20),
                 SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 3,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5.0),
-                        child: StatsItem(icon: Icons.lock_rounded, title: "Activity", value: "+2.0 points", iconColor: Colors.orange),
-                      );
-                    },
-                  )
-                ),
+                    height: 130,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 3,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5.0),
+                          child: StatsItem(
+                              icon: Icons.lock_rounded,
+                              title: "Activity",
+                              value: "+2.0 points",
+                              iconColor: Colors.orange),
+                        );
+                      },
+                    )),
                 const SizedBox(height: 40),
-                const Text("All Health Data", style: TextStyle(fontSize: 30, color: Colors.black)),
+                const Text("All Health Data",
+                    style: TextStyle(fontSize: 30, color: Colors.black)),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, int index) {
-                      return const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
-                        child: DataItem(),
-                      );
-                  }),
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, int index) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 15),
+                          child: DataItem(),
+                        );
+                      }),
                 )
               ],
             ),
