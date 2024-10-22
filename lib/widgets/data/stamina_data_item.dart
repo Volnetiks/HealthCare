@@ -8,8 +8,6 @@ class StaminaDataItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> progress = [1, 9, 0, 3, 6, 2, 9];
-
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
@@ -63,9 +61,9 @@ class StaminaDataItem extends StatelessWidget {
                             child: Column(
                               children: [
                                 StaminaData(
-                                  done: index % 2 == 0,
+                                  done: index % 3 != 0,
                                   doneTomorrow:
-                                      index == 6 ? null : (index + 1) % 2 == 0,
+                                      index == 6 ? null : (index + 1) % 3 != 0,
                                   size: 10,
                                 ),
                               ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class StaminaDataPainter extends CustomPainter {
   final bool done;
@@ -9,27 +8,27 @@ class StaminaDataPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final grey = Colors.grey.shade300;
-    const purple = Colors.purple;
-    final color = Color.lerp(grey, purple, done ? 1 : 0)!;
+    final color = done ? Colors.purple : Colors.grey.shade300;
+    final tomorrowColor = doneTomorrow == null
+        ? color
+        : doneTomorrow!
+            ? Colors.purple
+            : Colors.grey.shade300;
+
+    final gradient = LinearGradient(
+      colors: [color, tomorrowColor],
+    );
 
     final paintBackground = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke;
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..shader = gradient.createShader(Rect.fromPoints(
+          Offset(2, size.height / 2), Offset(size.width + 9, size.height / 2)));
 
-    if (doneTomorrow != null) {
-      final gradient = LinearGradient(
-          colors: [color, Color.lerp(grey, purple, doneTomorrow! ? 1 : 0)!],
-          stops: [0, 0.3]);
+    canvas.drawLine(Offset(2, size.height / 2),
+        Offset(size.width + 9, size.height / 2), paintBackground);
 
-      paintBackground.strokeWidth = 2;
-      paintBackground.shader = gradient.createShader(Rect.fromPoints(
-          Offset(2, size.height / 2), Offset(size.width, size.height / 2)));
-
-      canvas.drawLine(Offset(2, size.height / 2),
-          Offset(size.width + 10, size.height / 2), paintBackground);
-    }
-
+    paintBackground.color = done ? Colors.purple : Colors.grey.shade300;
     paintBackground.strokeWidth = 3;
     paintBackground.shader = null;
 
